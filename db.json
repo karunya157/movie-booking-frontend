@@ -1,0 +1,456 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin User",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Karun",
+      "email": "karun@gmail.com",
+      "password": "karun123",
+      "role": "customer"
+    },
+    {
+      "id": 1775888037638,
+      "name": "karun",
+      "email": "karun1@gmail.com",
+      "password": "karun123",
+      "role": "customer"
+    },
+    {
+      "id": 1775888323662,
+      "name": "karunya",
+      "email": "karunyalingeswaran@gmail.com",
+      "password": "123456",
+      "role": "customer"
+    },
+    {
+      "id": 1775888436562,
+      "name": "karu",
+      "email": "karunya@gmail.com",
+      "password": "234789",
+      "role": "customer"
+    },
+    {
+      "id": 1775894986271,
+      "name": "john",
+      "email": "john@examply.com",
+      "password": "john123",
+      "role": "customer"
+    },
+    {
+      "id": 1775895604402,
+      "name": "abi",
+      "email": "abi@123",
+      "password": "2115",
+      "role": "customer"
+    },
+    {
+      "id": 1775896456764,
+      "name": "reshu",
+      "email": "reshu@gmail.com",
+      "password": "282902",
+      "role": "customer"
+    },
+    {
+      "id": 1775896528600,
+      "name": "kiru",
+      "email": "kiru@gmail.com",
+      "password": "2490",
+      "role": "customer"
+    },
+    {
+      "id": 1775897051082,
+      "name": "anu",
+      "email": "anu@123",
+      "password": "6789",
+      "role": "customer"
+    },
+    {
+      "id": 1775916029526,
+      "name": "karu",
+      "email": "ka@123",
+      "password": "6789",
+      "role": "customer"
+    },
+    {
+      "id": 1775916077561,
+      "name": "yamini",
+      "email": "ya@123",
+      "password": "7906",
+      "role": "customer"
+    },
+    {
+      "id": 1776088063907,
+      "name": "oviya",
+      "email": "oviya@gmail.com",
+      "password": "9080",
+      "role": "customer"
+    },
+    {
+      "id": 1776176190635,
+      "name": "dee",
+      "email": "de@890",
+      "password": "gh90123",
+      "role": "customer"
+    },
+    {
+      "id": 1776260891065,
+      "name": "yalan",
+      "email": "yalan@120",
+      "password": "ghjkl",
+      "role": "customer"
+    },
+    {
+      "id": 1776432431267,
+      "name": "yalan",
+      "email": "Yaalan@123",
+      "password": "ya890",
+      "role": "customer"
+    },
+    {
+      "id": 1776500028603,
+      "name": "kiruthika",
+      "email": "kiruthi@gmail.com",
+      "password": "567890",
+      "role": "admin"
+    },
+    {
+      "id": 1776500313340,
+      "name": "kiru",
+      "email": "ki@gmail.com",
+      "password": "yuiop",
+      "role": "admin"
+    },
+    {
+      "id": 1776500510079,
+      "name": "monika",
+      "email": "monika@gmail.com",
+      "password": "fghjk",
+      "role": "customer"
+    },
+    {
+      "id": 1776500743649,
+      "name": "moni",
+      "email": "mo@123",
+      "password": "axcvbn",
+      "role": "customer"
+    },
+    {
+      "id": 1776501392701,
+      "name": "doe",
+      "email": "doe@gmail.com",
+      "password": "dfghj",
+      "role": "customer"
+    },
+    {
+      "id": 1776502555195,
+      "name": "sona",
+      "email": "sona@gmail.com",
+      "password": "asdfg",
+      "role": "customer"
+    },
+    {
+      "id": 1776502598579,
+      "name": "sonu",
+      "email": "sonu@gmail.com",
+      "password": "xcvbn",
+      "role": "customer"
+    },
+    {
+      "id": 1776503551063,
+      "name": "moni",
+      "email": "moni@gmail.com",
+      "password": "cvbnm",
+      "role": "customer"
+    },
+    {
+      "id": 1776518140089,
+      "name": "arun",
+      "email": "arun@gmail.com",
+      "password": "cvbnm",
+      "role": "admin"
+    },
+    {
+      "id": 1776518291193,
+      "name": "anu",
+      "email": "anu@gmail.com",
+      "password": "cvbn",
+      "role": "customer"
+    },
+    {
+      "id": 1776519273253,
+      "name": "sahana",
+      "email": "sahana@gmail.com",
+      "password": "dfghj",
+      "role": "admin"
+    },
+    {
+      "id": 1776519726876,
+      "name": "gowri",
+      "email": "gowri@gmail.com",
+      "password": "fghjn",
+      "role": "customer"
+    },
+    {
+      "id": 1776520204538,
+      "name": "shan",
+      "email": "shan@gmail.com",
+      "password": "cvbfr",
+      "role": "admin"
+    },
+    {
+      "id": 1776520593075,
+      "name": "anbu",
+      "email": "anbu@gmail.com",
+      "password": "1qsdf",
+      "role": "customer"
+    },
+    {
+      "id": 1776520767536,
+      "name": "kishore",
+      "email": "kishore@gmail.com",
+      "password": "asdf",
+      "role": "admin"
+    },
+    {
+      "id": 1776521280899,
+      "name": "yamini",
+      "email": "yamini@gmail.com",
+      "password": "67890",
+      "role": "customer"
+    },
+    {
+      "id": 1776522973460,
+      "name": "karunya",
+      "email": "karunya@gmail.com",
+      "password": "axcvv",
+      "role": "admin"
+    },
+    {
+      "id": 1776523269297,
+      "name": "jony",
+      "email": "johy@gmail.com",
+      "password": "1234",
+      "role": "customer"
+    },
+    {
+      "id": 1776523781094,
+      "name": "priya",
+      "email": "priya@gmail.com",
+      "password": "7890",
+      "role": "admin"
+    },
+    {
+      "id": 1776588967866,
+      "name": "kavi",
+      "email": "kavi@gmail.com",
+      "password": "cvbng",
+      "role": "customer"
+    },
+    {
+      "id": 1776606832553,
+      "name": "nandhini",
+      "email": "nandhu@gmail.com",
+      "password": "34567",
+      "role": "admin"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "B299008",
+      "userId": 1776521280899,
+      "movieId": 4,
+      "movieTitle": "Civil War",
+      "seats": [
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "date": "2026-04-21",
+      "time": "05:15 PM",
+      "amount": 799,
+      "method": "upi",
+      "image": "/civilwar.png",
+      "status": "Confirmed",
+      "createdAt": "2026-04-18T14:24:59.008Z"
+    },
+    {
+      "id": "B322849",
+      "userId": 1776521280899,
+      "movieId": 4,
+      "movieTitle": "Civil War",
+      "seats": [
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "date": "2026-04-21",
+      "time": "05:15 PM",
+      "amount": 799,
+      "method": "upi",
+      "image": "/civilwar.png",
+      "status": "Confirmed",
+      "createdAt": "2026-04-18T14:25:22.849Z"
+    },
+    {
+      "id": "B557691",
+      "userId": 1776521280899,
+      "movieId": 8,
+      "movieTitle": "Top Gun: Maverick",
+      "seats": [
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "date": "2026-04-22",
+      "time": "06:00 PM",
+      "amount": 1049,
+      "method": "cash",
+      "image": "/topgun.jpg",
+      "status": "Reserved",
+      "createdAt": "2026-04-18T14:29:17.692Z"
+    },
+    {
+      "id": "B791486",
+      "userId": 1776521280899,
+      "movieId": 1,
+      "movieTitle": "Dune: Part Two",
+      "seats": [
+        "A1",
+        "A2",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "date": "2026-04-18",
+      "time": "11:15 AM",
+      "amount": 1299,
+      "method": "upi",
+      "image": "/dune.png",
+      "status": "Confirmed",
+      "createdAt": "2026-04-18T14:33:11.486Z"
+    },
+    {
+      "id": "B869945",
+      "userId": 1776521280899,
+      "movieId": 1,
+      "movieTitle": "Dune: Part Two",
+      "seats": [
+        "A1",
+        "A2"
+      ],
+      "date": "2026-04-18",
+      "time": "11:15 AM",
+      "amount": 549,
+      "method": "cash",
+      "image": "/dune.png",
+      "status": "Reserved",
+      "createdAt": "2026-04-18T14:34:29.945Z"
+    },
+    {
+      "id": "B350997",
+      "userId": 1776523269297,
+      "movieId": 2,
+      "movieTitle": "Godzilla x Kong",
+      "seats": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C7",
+        "C8"
+      ],
+      "date": "2026-04-19",
+      "time": "12:30 PM",
+      "amount": 1799,
+      "method": "cash",
+      "image": "/godzilla.png",
+      "status": "Reserved",
+      "createdAt": "2026-04-18T14:42:30.998Z"
+    },
+    {
+      "id": "B728663",
+      "userId": 1776523269297,
+      "movieId": 6,
+      "movieTitle": "Oppenheimer",
+      "seats": [
+        "A1",
+        "A2"
+      ],
+      "date": "2026-04-20",
+      "time": "19:30",
+      "amount": 549,
+      "method": "cash",
+      "image": "/oppenheimer.jpg",
+      "status": "Reserved",
+      "createdAt": "2026-04-18T14:48:48.663Z"
+    },
+    {
+      "id": "B033245",
+      "userId": 1776588967866,
+      "movieId": 2,
+      "movieTitle": "Godzilla x Kong",
+      "seats": [
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "date": "2026-04-21",
+      "time": "07:30 PM",
+      "amount": 1299,
+      "method": "cash",
+      "image": "/godzilla.png",
+      "status": "Reserved",
+      "createdAt": "2026-04-19T08:57:13.245Z"
+    },
+    {
+      "id": "B815367",
+      "userId": 1776588967866,
+      "movieId": 8,
+      "movieTitle": "Top Gun: Maverick",
+      "seats": [
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "C12",
+        "C11"
+      ],
+      "date": "2026-04-23",
+      "time": "09:15 PM",
+      "amount": 1549,
+      "method": "cash",
+      "image": "/topgun.jpg",
+      "status": "Reserved",
+      "createdAt": "2026-04-19T12:46:55.367Z"
+    },
+    {
+      "id": "B773639",
+      "userId": 1776588967866,
+      "movieId": 4,
+      "movieTitle": "Civil War",
+      "seats": [
+        "A5",
+        "A6",
+        "B5",
+        "B6"
+      ],
+      "date": "2026-04-23",
+      "time": "09:15 PM",
+      "amount": 1049,
+      "method": "upi",
+      "image": "/civilwar.png",
+      "status": "Confirmed",
+      "createdAt": "2026-04-19T13:52:53.639Z"
+    }
+  ]
+}

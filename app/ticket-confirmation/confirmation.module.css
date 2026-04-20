@@ -1,0 +1,222 @@
+/* ===== TICKET CONFIRMATION PAGE ===== */
+.pageWrapper {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: #0a0a0a;
+  color: white;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+}
+
+/* ===== PROGRESS STEPS ===== */
+.progressBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 48px;
+  animation: fadeSlideDown 0.7s ease;
+}
+
+.progressStep {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stepCircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: #666;
+  transition: all 0.4s ease;
+}
+
+.stepCircle.active {
+  background: #e50914;
+  border-color: #e50914;
+  color: white;
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+}
+
+.stepCircle.completed {
+  background: #00c864;
+  border-color: #00c864;
+  color: white;
+  box-shadow: 0 0 15px rgba(0, 200, 100, 0.3);
+}
+
+.stepLabel {
+  font-size: 0.85rem;
+  color: #555;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.stepLabel.active {
+  color: #fff;
+}
+
+.stepLabel.completed {
+  color: #00c864;
+}
+
+.stepConnector {
+  width: 60px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stepConnector.completed {
+  background: #00c864;
+}
+
+/* ===== SUCCESS CARD ===== */
+.successContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.successCard {
+  background: linear-gradient(135deg, #1e1e1e, #161616);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  animation: scaleIn 0.5s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.successIcon {
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 200, 100, 0.15);
+  border: 2px solid #00c864;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 24px;
+  color: #00c864;
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.successTitle {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #00c864;
+  margin-bottom: 12px;
+}
+
+.successMessage {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+.successDetails {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.successDetailRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.95rem;
+}
+
+.successDetailRow:last-child {
+  border-bottom: none;
+}
+
+.successDetailRow span:first-child {
+  color: #777;
+}
+
+.successDetailRow span:last-child {
+  color: #eee;
+  font-weight: 600;
+  text-align: right;
+  max-width: 60%;
+}
+
+.successActions {
+  display: flex;
+  gap: 16px;
+}
+
+.successBtn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.successBtnPrimary {
+  background: #e50914;
+  color: white;
+}
+
+.successBtnPrimary:hover {
+  background: #f40612;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+}
+
+.successBtnSecondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.successBtnSecondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
