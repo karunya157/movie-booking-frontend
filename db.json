@@ -258,6 +258,13 @@
       "email": "nandhu@gmail.com",
       "password": "34567",
       "role": "admin"
+    },
+    {
+      "id": 1776689869126,
+      "name": "keerthika",
+      "email": "keerthika@gmail.com",
+      "password": "zswer",
+      "role": "admin"
     }
   ],
   "bookings": [
@@ -451,6 +458,28 @@
       "image": "/civilwar.png",
       "status": "Confirmed",
       "createdAt": "2026-04-19T13:52:53.639Z"
+    },
+    {
+      "id": "B932928",
+      "userId": 1776689869126,
+      "movieId": 6,
+      "movieTitle": "Oppenheimer",
+      "seats": [
+        "A4",
+        "A5",
+        "D5",
+        "D4",
+        "C7",
+        "B7",
+        "A7"
+      ],
+      "date": "2026-04-22",
+      "time": "06:00 PM",
+      "amount": 1799,
+      "method": "upi",
+      "image": "/oppenheimer.jpg",
+      "status": "Confirmed",
+      "createdAt": "2026-04-20T12:58:52.928Z"
     }
   ]
 }
