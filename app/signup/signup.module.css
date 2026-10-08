@@ -1,0 +1,291 @@
+.container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #070b14 url('/cinema-auth-bg.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 40px 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Cinematic ambient depth overlay */
+.container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(8, 12, 22, 0.45) 0%, rgba(6, 9, 18, 0.82) 100%);
+  pointer-events: none;
+}
+
+.card {
+  position: relative;
+  background: rgba(11, 16, 28, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-radius: 26px;
+  padding: 38px 34px 34px;
+  width: 100%;
+  max-width: 450px;
+  z-index: 2;
+  animation: fadeInCard 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    -18px 0 45px -5px rgba(255, 42, 133, 0.32),
+    18px 0 45px -5px rgba(255, 183, 0, 0.32),
+    0 25px 60px rgba(0, 0, 0, 0.85);
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Dual neon magenta to warm gold gradient border */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 27.5px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, #ff2a85 0%, #ff5e98 35%, #ffc107 70%, #ffb700 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.title {
+  font-size: 2.15rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  letter-spacing: -0.5px;
+}
+
+.titleIcon {
+  color: #ff2a85;
+  filter: drop-shadow(0 0 10px rgba(255, 42, 133, 0.7));
+  display: flex;
+  align-items: center;
+}
+
+.titlePink {
+  color: #ff2a85;
+  text-shadow: 0 0 22px rgba(255, 42, 133, 0.55);
+}
+
+.titleGold {
+  color: #ffb700;
+  text-shadow: 0 0 22px rgba(255, 183, 0, 0.55);
+}
+
+.subtitle {
+  color: #94a3b8;
+  text-align: center;
+  margin-bottom: 26px;
+  font-size: 0.88rem;
+  font-weight: 400;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  pointer-events: none;
+  transition: color 0.25s ease;
+}
+
+.input {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 13px 14px 13px 44px;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #475569;
+}
+
+.input:focus {
+  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 0.85);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2), 0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+.inputWrapper:focus-within .inputIcon {
+  color: #38bdf8;
+}
+
+.roleToggle {
+  display: flex;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.roleBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #94a3b8;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.roleBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+/* Customer Active: Glowing Neon Pink */
+.roleBtnCustomerActive {
+  background: rgba(255, 42, 133, 0.14) !important;
+  border: 1.5px solid #ff2a85 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 16px rgba(255, 42, 133, 0.35);
+}
+
+.roleBtnCustomerActive svg {
+  color: #ff2a85;
+  filter: drop-shadow(0 0 6px rgba(255, 42, 133, 0.7));
+}
+
+/* Admin Active: Glowing Neon Gold */
+.roleBtnAdminActive {
+  background: rgba(255, 183, 0, 0.14) !important;
+  border: 1.5px solid #ffb700 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 16px rgba(255, 183, 0, 0.35);
+}
+
+.roleBtnAdminActive svg {
+  color: #ffb700;
+  filter: drop-shadow(0 0 6px rgba(255, 183, 0, 0.7));
+}
+
+.button {
+  background: linear-gradient(135deg, #ff2a85 0%, #ff5e98 45%, #ffb700 100%);
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 8px 24px rgba(255, 42, 133, 0.42);
+  letter-spacing: 0.4px;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 42, 133, 0.55), 0 0 18px rgba(255, 183, 0, 0.35);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.footer {
+  margin-top: 22px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.88rem;
+}
+
+.link {
+  color: #ff2a85;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 6px;
+  transition: all 0.2s;
+}
+
+.link:hover {
+  color: #ff5e98;
+  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(255, 42, 133, 0.6);
+}
+
+.error {
+  background: rgba(255, 68, 68, 0.12);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  color: #ff6b6b;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.success {
+  background: rgba(0, 200, 81, 0.12);
+  border: 1px solid rgba(0, 200, 81, 0.3);
+  color: #00e676;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  text-align: center;
+}

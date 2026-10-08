@@ -1,30 +1,31 @@
-import { readDB, writeDB } from "@/lib/db";
-
 export async function PUT(req) {
   try {
     const body = await req.json();
     const { id, name, email, password } = body;
 
-    const db = readDB();
-
-    const userIndex = db.users.findIndex(u => u.id === id);
-
-    if (userIndex === -1) {
+    // First fetch the existing user
+    const getRes = await fetch(`http://localhost:8080/users/${id}`);
+    if (!getRes.ok) {
       return Response.json({ message: "User not found" }, { status: 404 });
     }
+    const existingUser = await getRes.json();
 
     // Update user details
     const updatedUser = {
-      ...db.users[userIndex],
-      name: name || db.users[userIndex].name,
-      email: email || db.users[userIndex].email,
-      password: password || db.users[userIndex].password,
+      ...existingUser,
+      name: name || existingUser.name,
+      email: email || existingUser.email,
+      password: password || existingUser.password,
     };
 
-    db.users[userIndex] = updatedUser;
-    writeDB(db);
+    const res = await fetch(`http://localhost:8080/users/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedUser)
+    });
 
-    return Response.json({ message: "Profile updated successfully", user: updatedUser });
+    const savedUser = await res.json();
+    return Response.json({ message: "Profile updated successfully", user: savedUser });
   } catch (error) {
     console.error("Update Error:", error);
     return Response.json({ message: "Internal server error" }, { status: 500 });

@@ -2,11 +2,16 @@
 
 import React, { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Confetti from "react-confetti";
+import { useWindowSize } from "react-use";
+
 import styles from "./confirmation.module.css";
 
 function ConfirmationPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { width, height } = useWindowSize();
+
 
   const transactionId = searchParams.get("txnId") || "TXN01638148";
   const movieTitle = searchParams.get("movieTitle") || "Civil War";
@@ -16,8 +21,44 @@ function ConfirmationPageContent() {
   const method = searchParams.get("method") || "cash";
   const amount = searchParams.get("amount") || "3549.00";
 
+  interface SnackItem {
+    id: string;
+    name: string;
+    price: number;
+    quantity: number;
+    emoji: string;
+    total?: number;
+  }
+
+  const [snacksList, setSnacksList] = React.useState<SnackItem[]>([]);
+
+  React.useEffect(() => {
+    try {
+      const param = searchParams.get("snacks");
+      if (param) {
+        const parsed = JSON.parse(decodeURIComponent(param));
+        if (Array.isArray(parsed)) setSnacksList(parsed);
+      } else if (typeof window !== "undefined") {
+        const stored = sessionStorage.getItem("movie_booking_snacks");
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) setSnacksList(parsed);
+        }
+      }
+    } catch (e) {
+      console.error("Failed to parse snacks in confirmation:", e);
+    }
+  }, [searchParams]);
+
   return (
     <div className={styles.pageWrapper}>
+      <Confetti
+        width={width}
+        height={height}
+        recycle={false}
+        numberOfPieces={500}
+        gravity={0.15}
+      />
       <div className={styles.container}>
         {/* Progress Steps */}
         <div className={styles.progressBar}>
@@ -70,6 +111,21 @@ function ConfirmationPageContent() {
                 <span>Date &amp; Time</span>
                 <span>{showDate} at {showTime}</span>
               </div>
+              {snacksList.length > 0 && (
+                <div className={styles.successDetailRow} style={{ alignItems: "flex-start" }}>
+                  <span>🍿 Food &amp; Snacks</span>
+                  <div style={{ textAlign: "right" }}>
+                    {snacksList.map(s => (
+                      <div key={s.id} style={{ fontSize: "0.85rem", color: "#ddd" }}>
+                        {s.emoji} {s.name} × {s.quantity}
+                      </div>
+                    ))}
+                    <div style={{ fontSize: "0.74rem", color: "#00e676", marginTop: "3px" }}>
+                      ⚡ Pre-booked • Seat Delivery / Express Pickup
+                    </div>
+                  </div>
+                </div>
+              )}
               <div className={styles.successDetailRow}>
                 <span>Payment Method</span>
                 <span>{method === "card" ? "Card" : method === "upi" ? "UPI" : "Cash at Theatre"}</span>

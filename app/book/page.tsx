@@ -1,40 +1,38 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import toast from "react-hot-toast";
 import styles from "./book.module.css";
-
-/* ===== Movie data (mirrors movies page) ===== */
-const allMovies: Record<number, { title: string; image: string; genre: string; duration: string; language: string; rating: string }> = {
-  1: { title: "Dune: Part Two", image: "/dune.png", genre: "Sci-Fi / Adventure", duration: "166 min", language: "English", rating: "8.8" },
-  2: { title: "Godzilla x Kong", image: "/godzilla.png", genre: "Action / Sci-Fi", duration: "115 min", language: "English", rating: "7.1" },
-  3: { title: "Kung Fu Panda 4", image: "/kungfu.png", genre: "Animation / Family", duration: "94 min", language: "English", rating: "6.9" },
-  4: { title: "Civil War", image: "/civilwar.png", genre: "Action / Thriller", duration: "109 min", language: "English", rating: "7.5" },
-  5: { title: "The Batman", image: "/batman.jpg", genre: "Action / Crime", duration: "176 min", language: "English", rating: "7.8" },
-  6: { title: "Oppenheimer", image: "/oppenheimer.jpg", genre: "Drama / History", duration: "180 min", language: "English", rating: "8.5" },
-  7: { title: "Avatar: The Way of Water", image: "/avatar.jpg", genre: "Sci-Fi / Fantasy", duration: "192 min", language: "English", rating: "7.6" },
-  8: { title: "Top Gun: Maverick", image: "/topgun.jpg", genre: "Action / Drama", duration: "130 min", language: "English", rating: "8.3" },
-};
+import { defaultMoviesList, Movie } from "@/data/movies";
 
 /* ===== Mock Data for Cities and Theatres ===== */
 const locationsData: Record<string, { name: string; amenities: string[]; timings: string[] }[]> = {
-  "New York": [
-    { name: "AMC Empire 25", amenities: ["IMAX", "Dolby Atmos", "Food"], timings: ["10:30 AM", "01:15 PM", "04:45 PM", "07:30 PM", "10:00 PM"] },
-    { name: "Regal Union Square", amenities: ["4DX", "Dolby Atmos"], timings: ["11:00 AM", "02:30 PM", "06:00 PM", "09:15 PM"] },
-    { name: "Alamo Drafthouse", amenities: ["Dine-In", "Dolby 7.1"], timings: ["01:00 PM", "05:15 PM", "08:30 PM"] }
+  "Chennai": [
+    { name: "PVR: Sathyam Cinemas, Royapettah", amenities: ["IMAX", "Dolby Atmos", "Food"], timings: ["10:30 AM", "01:15 PM", "04:45 PM", "07:30 PM", "10:00 PM"] },
+    { name: "INOX: Luxe, Phoenix Marketcity", amenities: ["4DX", "Dolby Atmos"], timings: ["11:00 AM", "02:30 PM", "06:00 PM", "09:15 PM"] },
+    { name: "AGS Cinemas, T Nagar", amenities: ["Dolby 7.1", "Parking"], timings: ["01:00 PM", "05:15 PM", "08:30 PM"] }
   ],
-  "Los Angeles": [
-    { name: "TCL Chinese Theatre", amenities: ["IMAX", "Dolby Atmos"], timings: ["12:00 PM", "03:45 PM", "07:00 PM", "10:30 PM"] },
-    { name: "AMC The Grove 14", amenities: ["Dolby Cinema", "Recliners"], timings: ["10:15 AM", "01:30 PM", "04:20 PM", "08:15 PM"] },
-    { name: "El Capitan Theatre", amenities: ["Dolby Vision", "Atmos"], timings: ["10:00 AM", "02:00 PM", "06:00 PM", "09:30 PM"] }
+  "Coimbatore": [
+    { name: "KG Cinemas, Race Course", amenities: ["Dolby Atmos", "Recliners"], timings: ["10:15 AM", "01:30 PM", "04:20 PM", "08:15 PM"] },
+    { name: "INOX: Prozone Mall", amenities: ["Dolby Cinema"], timings: ["12:00 PM", "03:45 PM", "07:00 PM", "10:30 PM"] },
+    { name: "Sathyam Cinemas: Brookefields", amenities: ["Dolby Vision", "Atmos"], timings: ["10:00 AM", "02:00 PM", "06:00 PM", "09:30 PM"] }
   ],
-  "Chicago": [
-    { name: "AMC River East 21", amenities: ["IMAX", "Food"], timings: ["11:45 AM", "03:00 PM", "06:30 PM", "09:45 PM"] },
-    { name: "Showplace ICON", amenities: ["Dolby Atmos", "VIP Lounge"], timings: ["12:30 PM", "04:00 PM", "08:00 PM"] }
+  "Madurai": [
+    { name: "INOX: Vishaal de Mal", amenities: ["Food", "Dolby 7.1"], timings: ["11:45 AM", "03:00 PM", "06:30 PM", "09:45 PM"] },
+    { name: "Milan'em Mall Cinemas", amenities: ["Dolby Atmos", "VIP Lounge"], timings: ["12:30 PM", "04:00 PM", "08:00 PM"] }
   ],
-  "San Francisco": [
-    { name: "AMC Metreon 16", amenities: ["IMAX 70mm", "Dolby Atmos"], timings: ["11:15 AM", "02:45 PM", "06:15 PM", "09:45 PM"] },
-    { name: "Alamo Drafthouse New Mission", amenities: ["Dine-In", "Dolby Atmos"], timings: ["12:45 PM", "04:30 PM", "08:15 PM"] }
+  "Trichy": [
+    { name: "LA Cinemas", amenities: ["Dolby Atmos", "Recliners"], timings: ["11:15 AM", "02:45 PM", "06:15 PM", "09:45 PM"] },
+    { name: "Rambha Theatre", amenities: ["Dolby Atmos", "Food"], timings: ["12:45 PM", "04:30 PM", "08:15 PM"] }
+  ],
+  "Salem": [
+    { name: "ARRS Multiplex, Meyyanur", amenities: ["Dolby Atmos", "4K Projection", "Food"], timings: ["10:15 AM", "01:30 PM", "04:45 PM", "07:30 PM", "10:15 PM"] },
+    { name: "INOX: Reliance Mall, Salem", amenities: ["Dolby Atmos", "Recliners", "Food"], timings: ["11:00 AM", "02:15 PM", "06:00 PM", "09:30 PM"] },
+    { name: "Kalyani Cinemas, 4 Roads", amenities: ["Dolby 7.1", "Parking"], timings: ["10:30 AM", "02:00 PM", "06:15 PM", "09:45 PM"] },
+    { name: "Sapna Multiplex, Meyyanur", amenities: ["Dolby Atmos", "Recliners"], timings: ["11:30 AM", "03:00 PM", "06:45 PM", "10:00 PM"] }
   ]
 };
 
@@ -59,11 +57,68 @@ const getNextDays = (numDays: number) => {
 function BookPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const user = useSelector((state: RootState) => state.auth.user);
   
-  const movieId = Number(searchParams.get("movie") || 1);
-  const movie = allMovies[movieId] || allMovies[1];
+  const movieId = Number(searchParams.get("movie") || 2);
   
-  const [selectedCity, setSelectedCity] = useState("New York");
+  // Find movie immediately from central list so no fallback to wrong movie occurs
+  const initialMovie = defaultMoviesList.find((m) => m.id === movieId) || defaultMoviesList[0];
+  const [movie, setMovie] = useState<Movie>(initialMovie);
+
+  // Authentication validation helper: Requires logged in customer
+  const checkCustomerAuth = () => {
+    let currentUser = user;
+    if (!currentUser && typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("user");
+        if (saved) currentUser = JSON.parse(saved);
+      } catch (e) {}
+    }
+
+    if (!currentUser) {
+      toast.error("Please login to book tickets!");
+      router.push(`/login?redirect=${encodeURIComponent(`/book?movie=${movieId}`)}`);
+      return false;
+    }
+
+    if (currentUser.role === "admin") {
+      toast.error("Admin accounts cannot book tickets. Please login as a customer.");
+      router.push(`/login?redirect=${encodeURIComponent(`/book?movie=${movieId}`)}`);
+      return false;
+    }
+
+    return true;
+  };
+
+  useEffect(() => {
+    checkCustomerAuth();
+  }, [user, movieId]);
+
+  useEffect(() => {
+    // Immediately select matched movie from default catalogue
+    const matched = defaultMoviesList.find((m) => m.id === movieId);
+    if (matched) {
+      setMovie(matched);
+    }
+
+    const fetchMovie = async () => {
+      try {
+        const res = await fetch("/api/movies");
+        if (res.ok) {
+          const movies = await res.json();
+          const found = movies.find((m: Movie) => m.id === movieId || m.title?.trim().toLowerCase() === matched?.title?.trim().toLowerCase());
+          if (found) {
+            setMovie(found);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch movie data:", error);
+      }
+    };
+    fetchMovie();
+  }, [movieId]);
+  
+  const [selectedCity, setSelectedCity] = useState("Chennai");
   const [activeFilter, setActiveFilter] = useState("All");
   
   const dates = getNextDays(5);
@@ -72,8 +127,11 @@ function BookPageContent() {
   const theatres = locationsData[selectedCity] || [];
 
   const handleTimeClick = (theatreName: string, time: string) => {
-    // Navigate to Seat Selection
-    router.push(`/seats?movie=${movieId}&theatre=${encodeURIComponent(theatreName)}&date=${selectedDateStr}&time=${encodeURIComponent(time)}`);
+    if (!checkCustomerAuth()) return;
+    
+    // Navigate to Seat Selection with the exact active movie
+    const activeMovieId = movie?.id || movieId;
+    router.push(`/seats?movie=${activeMovieId}&theatre=${encodeURIComponent(theatreName)}&date=${selectedDateStr}&time=${encodeURIComponent(time)}`);
   };
 
   return (
@@ -81,19 +139,30 @@ function BookPageContent() {
       <div className={styles.container}>
         
         {/* Header - Movie Info */}
-        <div className={styles.headerSection}>
-          <img src={movie.image} alt={movie.title} className={styles.moviePoster} />
-          <div className={styles.movieInfo}>
-            <h1>{movie.title}</h1>
-            <div className={styles.movieMeta}>
-              <span className={styles.ratingBadge}>⭐ {movie.rating}</span>
-              <span>•</span>
-              <span>🎭 {movie.genre}</span>
-              <span>•</span>
-              <span>⏱ {movie.duration}</span>
+        {!movie ? (
+          <div style={{ color: 'white', padding: '20px', textAlign: 'center' }}>Loading movie details...</div>
+        ) : (
+          <div className={styles.headerSection}>
+            <img 
+              src={movie.image || "/leo.jpg"} 
+              alt={movie.title} 
+              className={styles.moviePoster}
+              onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/leo.jpg"; }}
+            />
+            <div className={styles.movieInfo}>
+              <h1>{movie.title}</h1>
+              <div className={styles.movieMeta}>
+                <span className={styles.ratingBadge}>⭐ {movie.rating || "8.0"}</span>
+                <span>•</span>
+                <span>🎭 {movie.genre}</span>
+                <span>•</span>
+                <span style={{ color: "#ff1a75", fontWeight: 700 }}>🌐 {movie.language || "Tamil"}</span>
+                <span>•</span>
+                <span>⏱ {movie.duration || "150 min"}</span>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Date Selection */}
         <div className={styles.dateSection}>

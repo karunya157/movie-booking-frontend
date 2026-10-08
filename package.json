@@ -10,11 +10,17 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
+    "@types/aos": "^3.0.8",
+    "aos": "^2.3.4",
     "json-server": "^1.0.0-beta.15",
+    "mysql2": "^3.24.5",
     "next": "16.2.3",
     "react": "19.2.4",
+    "react-confetti": "^6.4.0",
     "react-dom": "19.2.4",
-    "react-redux": "^9.2.0"
+    "react-hot-toast": "^2.6.1",
+    "react-redux": "^9.2.0",
+    "react-use": "^17.6.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

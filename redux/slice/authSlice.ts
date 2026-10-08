@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface User {
-  id: string;
+  id: string | number;
   name: string;
   email: string;
   role: string;
@@ -21,9 +21,24 @@ const authSlice = createSlice({
   reducers: {
     login: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
+      if (typeof window !== "undefined") {
+        try {
+          localStorage.setItem("user", JSON.stringify(action.payload));
+        } catch (e) {
+          console.error(e);
+        }
+      }
     },
     logout: (state) => {
       state.user = null;
+      if (typeof window !== "undefined") {
+        try {
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+        } catch (e) {
+          console.error(e);
+        }
+      }
     },
     updateUser: (state, action: PayloadAction<Partial<User>>) => {
       if (state.user) {

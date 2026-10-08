@@ -1,4 +1,5 @@
 "use client";
+import toast from 'react-hot-toast';
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -25,11 +26,11 @@ export default function Register() {
 
     console.log("User Data:", form);
 
-    // 👉 Here you can connect backend / API later
+    
 
-    alert("Registration Successful!");
+    toast.success("Registration Successful!");
 
-    router.push("/login"); // redirect to login
+    router.push("/login"); 
   };
 
   return (
@@ -86,15 +87,7 @@ export default function Register() {
           style={inputStyle}
         />
 
-        <select
-          name="role"
-          value={form.role}
-          onChange={handleChange}
-          style={inputStyle}
-        >
-          <option value="customer">Customer</option>
-          <option value="admin">Admin</option>
-        </select>
+        <input type="hidden" name="role" value="customer" />
 
         <button
           type="submit"

@@ -1,30 +1,19 @@
-import { readDB, writeDB } from "@/lib/db";
-
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get("userId");
-    const role = searchParams.get("role");
-
-    const db = readDB();
-
-    if (!db.bookings) {
-      db.bookings = [];
-      writeDB(db);
-    }
-
-    if (role === "admin") {
-      return Response.json(db.bookings);
-    }
-
+    
+    let url = "http://localhost:8080/bookings";
     if (userId) {
-      const userBookings = db.bookings.filter(b => b.userId.toString() === userId.toString());
-      return Response.json(userBookings);
+      url += `?userId=${userId}`;
     }
-
-    return Response.json({ message: "UserId or Admin role required" }, { status: 400 });
+    
+    const res = await fetch(url);
+    const bookings = await res.json();
+    
+    // Sort by id descending like before? The old code returned the raw array.
+    return Response.json(bookings);
   } catch (error) {
-    console.error("Fetch Bookings Error:", error);
     return Response.json({ message: "Internal server error" }, { status: 500 });
   }
 }
@@ -32,35 +21,88 @@ export async function GET(req) {
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { userId, movieId, movieTitle, seats, date, time, amount, method, image } = body;
-
-    const db = readDB();
-
-    if (!db.bookings) {
-      db.bookings = [];
-    }
-
     const newBooking = {
-      id: "B" + Date.now().toString().slice(-6),
-      userId,
-      movieId,
-      movieTitle,
-      seats,
-      date,
-      time,
-      amount,
-      method,
-      image: image || "/placeholder-movie.png",
-      status: method === "cash" ? "Reserved" : "Confirmed", // Reserved for cash, Confirmed for others
-      createdAt: new Date().toISOString(),
+      ...body,
+      id: "B" + Math.floor(100000 + Math.random() * 900000), // Random Booking ID
+      createdAt: new Date().toISOString()
     };
-
-    db.bookings.push(newBooking);
-    writeDB(db);
-
-    return Response.json({ message: "Booking created successfully", booking: newBooking });
-  } catch (error) {
-    console.error("Create Booking Error:", error);
-    return Response.json({ message: "Internal server error" }, { status: 500 });
+    
+    const res = await fetch("http://localhost:8080/bookings", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newBooking)
+    });
+    
+    const created = await res.json();
+    return Response.json({ message: "Booking confirmed", booking: created });
+  } catch {
+    return Response.json({ message: "Error" }, { status: 500 });
   }
 }
+
+export async function PUT(req) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    const body = await req.json();
+    
+    const res = await fetch(`http://localhost:8080/bookings/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    
+    const updated = await res.json();
+    return Response.json({ message: "Booking updated", booking: updated });
+  } catch {
+    return Response.json({ message: "Error" }, { status: 500 });
+  }
+}
+
+export async function DELETE(req) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    
+    await fetch(`http://localhost:8080/bookings/${id}`, { method: 'DELETE' });
+    return Response.json({ message: "Booking cancelled" });
+  } catch {
+    return Response.json({ message: "Error" }, { status: 500 });
+  }
+}
+
+export async function PATCH(req) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    
+    let newStatus = "Cancelled (Refunded)";
+    try {
+      const body = await req.json();
+      if (body?.status) newStatus = body.status;
+    } catch {
+      // Body is optional
+    }
+    
+    // Fetch existing booking
+    const getRes = await fetch("http://localhost:8080/bookings/" + id);
+    if (!getRes.ok) {
+      return Response.json({ message: "Not found" }, { status: 404 });
+    }
+    const booking = await getRes.json();
+    booking.status = newStatus;
+    
+    // Update it
+    const res = await fetch("http://localhost:8080/bookings/" + id, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(booking)
+    });
+    
+    const updated = await res.json();
+    return Response.json({ message: "Booking cancelled and refunded", booking: updated });
+  } catch {
+    return Response.json({ message: "Error" }, { status: 500 });
+  }
+}
+

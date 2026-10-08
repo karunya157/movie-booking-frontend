@@ -14,7 +14,11 @@ const SeatLayout: React.FC = () => {
   return (
     <div>
       {[...Array(25)].map((_, i) => (
-        <button key={i} onClick={() => toggleSeat(i)}>
+        <button 
+          key={i} 
+          onClick={() => toggleSeat(i)}
+          style={{ background: selectedSeats.includes(i) ? 'green' : 'gray' }}
+        >
           {i + 1}
         </button>
       ))}

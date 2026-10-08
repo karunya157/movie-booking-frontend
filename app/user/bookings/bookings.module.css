@@ -371,11 +371,217 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* REFUND MODAL STYLES */
+
+.refundModalContent {
+  background: #181818;
+  border: 1px solid rgba(229, 9, 20, 0.25);
+  border-radius: 18px;
+  padding: 32px;
+  width: 520px;
+  max-width: 94vw;
+  position: relative;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(229, 9, 20, 0.15);
+}
+
+.refundHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.refundIcon {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+  display: inline-block;
+  animation: bounce 1s infinite alternate ease-in-out;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+.refundTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.refundSubtitle {
+  font-size: 0.88rem;
+  color: #aaa;
+  line-height: 1.4;
+}
+
+.refundSummaryCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.refundSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.refundSummaryRow:last-child {
+  border-bottom: none;
+}
+
+.refundSummaryLabel {
+  color: #888;
+}
+
+.refundSummaryValue {
+  color: #eee;
+  font-weight: 500;
+}
+
+.refundHighlightBox {
+  background: linear-gradient(135deg, rgba(0, 200, 100, 0.15), rgba(0, 150, 70, 0.08));
+  border: 1px solid rgba(0, 200, 100, 0.4);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.refundHighlightText h4 {
+  font-size: 0.85rem;
+  color: #a8f5c8;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.refundHighlightText p {
+  font-size: 0.8rem;
+  color: #77b892;
+  margin: 0;
+}
+
+.refundHighlightAmount {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #00e676;
+  text-shadow: 0 0 20px rgba(0, 230, 118, 0.3);
+}
+
+.refundGuarantee {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: #999;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 24px;
+}
+
+.refundGuarantee span {
+  font-size: 1.2rem;
+}
+
+.refundActions {
+  display: flex;
+  gap: 12px;
+}
+
+.keepTicketBtn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ddd;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.keepTicketBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.confirmCancelBtn {
+  flex: 1.4;
+  background: linear-gradient(135deg, #e50914, #b20710);
+  border: none;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+}
+
+.confirmCancelBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ff1f2a, #d10712);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
+}
+
+.confirmCancelBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refundSuccessCard {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.refundSuccessIcon {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+}
+
+.refundSuccessCard h3 {
+  font-size: 1.4rem;
+  color: #00e676;
+  margin-bottom: 8px;
+}
+
+.refundSuccessCard p {
+  color: #aaa;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.refundedBadge {
+  background: rgba(0, 230, 118, 0.15) !important;
+  color: #00e676 !important;
+  border: 1px solid rgba(0, 230, 118, 0.3);
+}
+
 /* PRINT STYLES */
 
 @media print {
-  .pageWrapper, .header, .bookingsList {
+  .header, .bookingsList {
     display: none !important;
+  }
+  .pageWrapper {
+    padding: 0;
+    background: white;
+    min-height: auto;
   }
   .modalOverlay {
     position: static;
@@ -389,5 +595,11 @@
   }
   .modalClose, .invoiceActions {
     display: none !important;
+  }
+  .invoiceRow span:first-child, .invoiceRow span:last-child {
+    color: black !important;
+  }
+  .invoiceLabel {
+    color: black !important;
   }
 }

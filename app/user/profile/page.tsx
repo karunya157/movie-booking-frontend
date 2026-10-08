@@ -27,7 +27,7 @@ export default function ProfilePage() {
       setForm({
         name: user.name,
         email: user.email,
-        password: "", // Keep password blank for safety
+        password: "", 
       });
     } else {
       router.push("/login");
@@ -67,8 +67,8 @@ export default function ProfilePage() {
       // Update Redux state
       dispatch(updateUser(data.user));
       setSuccess("Profile updated successfully!");
-    } catch (err: any) {
-      setError(err.message || "Something went wrong");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
       setLoading(false);
     }

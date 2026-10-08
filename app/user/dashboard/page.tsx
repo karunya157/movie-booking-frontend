@@ -1,4 +1,5 @@
 "use client";
+import toast from 'react-hot-toast';
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -8,15 +9,15 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
 const mockMovies = [
-  { id: 1, title: "Dune: Part Two", genre: "Sci-Fi / Adventure", image: "/dune.png", rating: "8.8" },
-  { id: 2, title: "Godzilla x Kong", genre: "Action / Sci-Fi", image: "/godzilla.png", rating: "7.1" },
-  { id: 3, title: "Kung Fu Panda 4", genre: "Animation / Family", image: "/kungfu.png", rating: "6.9" },
-  { id: 4, title: "Civil War", genre: "Action / Thriller", image: "/civilwar.png", rating: "7.5" },
+  { id: 1, title: "Leo", genre: "Action / Thriller", image: "/leo.jpg", rating: "8.8" },
+  { id: 2, title: "Jailer", genre: "Action / Comedy", image: "/jailer.jpg", rating: "7.9" },
+  { id: 3, title: "Vikram", genre: "Action / Thriller", image: "/vikram.jpg", rating: "8.6" },
+  { id: 4, title: "Maharaja", genre: "Crime / Thriller", image: "/maharaja.jpg", rating: "8.5" },
 ];
 
 const upcomingMoviesList = [
-  { id: 5, title: "Deadpool & Wolverine", genre: "Action / Comedy", image: "/deadpool.png", releaseDate: "July 26" },
-  { id: 6, title: "Despicable Me 4", genre: "Animation / Comedy", image: "/despicable.png", releaseDate: "July 3" },
+  { id: 5, title: "Viduthalai Part 2", genre: "Crime / Drama", image: "/viduthalai.jpg" },
+  { id: 6, title: "Coolie", genre: "Action / Thriller", image: "/coolie.png" },
 ];
 
 const UserDashboard: React.FC = () => {
@@ -75,7 +76,6 @@ const UserDashboard: React.FC = () => {
         </div>
       </header>
 
-      
       <section className={styles.statsGrid}>
         <div
           className={`${styles.statCard} ${styles.clickable}`}
@@ -100,7 +100,7 @@ const UserDashboard: React.FC = () => {
         </div>
         <div
           className={`${styles.statCard} ${styles.clickable}`}
-          onClick={() => alert(`🎉 You have ${points} reward points!\n\nRedeem them on your next booking for discounts.`)}
+          onClick={() => toast(`🎉 You have ${points} reward points!\n\nRedeem them on your next booking for discounts.`)}
           role="button"
           tabIndex={0}
         >
@@ -109,7 +109,7 @@ const UserDashboard: React.FC = () => {
         </div>
       </section>
 
-      
+      {/* Now Showing Section */}
       <section className={styles.nowShowing}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Now Showing</h2>
@@ -120,10 +120,7 @@ const UserDashboard: React.FC = () => {
           {mockMovies.map((movie) => (
             <div key={movie.id} className={styles.movieCard}>
               <div className={styles.moviePoster}>
-                <div className={styles.ratingBadge}>
-                  ★ {movie.rating}
-                </div>
-                {/* Fallback to background color if image isn't loaded */}
+                <div className={styles.ratingBadge}>★ {movie.rating}</div>
                 <img src={movie.image} alt={movie.title} loading="lazy" />
               </div>
               <div className={styles.movieInfo}>
@@ -141,7 +138,8 @@ const UserDashboard: React.FC = () => {
         </div>
       </section>
 
-      <section id="upcoming-section" className={styles.nowShowing} style={{ marginTop: "40px" }}>
+      {/* Upcoming Movies Section */}
+      <section id="upcoming-section" className={styles.upcomingSection} style={{ marginTop: "40px" }}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Upcoming Movies</h2>
         </div>
@@ -150,9 +148,6 @@ const UserDashboard: React.FC = () => {
           {upcomingMoviesList.map((movie) => (
             <div key={movie.id} className={styles.movieCard} style={{ opacity: 0.9 }}>
               <div className={styles.moviePoster}>
-                <div className={styles.ratingBadge} style={{ background: "rgba(255, 100, 100, 0.8)", color: "white" }}>
-                  🗓 {movie.releaseDate}
-                </div>
                 <img src={movie.image} alt={movie.title} loading="lazy" />
               </div>
               <div className={styles.movieInfo}>
