@@ -1235,3 +1235,658 @@
   color: #fff;
 }
 
+/* ==========================================================================
+   MANAGE THEATRES & HALLS (ENTERPRISE DASHBOARD - MATCHING IMAGE 2)
+   ========================================================================== */
+
+.theatresDashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Header Bar */
+.theatresHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: #121522;
+  padding: 20px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.theatresHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.headerIconBox {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #818cf8;
+}
+
+.theatresHeaderTitle {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.theatresHeaderSubtitle {
+  margin: 4px 0 0 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.addTheatreBtn {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  transition: all 0.2s ease;
+}
+
+.addTheatreBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
+  background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+}
+
+/* Sub-Tabs Pill Navigation */
+.subTabsBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.subTabBtn {
+  background: #181c2b;
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.subTabBtn:hover {
+  background: #202538;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.activeSubTabBtn {
+  background: #6366f1 !important;
+  color: #ffffff !important;
+  border-color: #6366f1 !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+}
+
+/* Card Base */
+.dashCard {
+  background: #121522;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.cardHeadTitle {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Row Grids */
+.row1Grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.row2Grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.row3Grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1.15fr 1.9fr 1.1fr;
+  gap: 20px;
+}
+
+@media (max-width: 1280px) {
+  .row3Grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .row1Grid,
+  .row2Grid,
+  .row3Grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Forms */
+.formGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.formGrid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroupFull {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.01em;
+}
+
+.reqStar {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.formInput,
+.formSelect {
+  width: 100%;
+  background: #181c2b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #ffffff;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formInput:focus,
+.formSelect:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.formSelect option {
+  background: #181c2b;
+  color: #ffffff;
+}
+
+/* Facilities Checkbox Grid */
+.facilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  background: #181c2b;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  user-select: none;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  accent-color: #6366f1;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+/* Form Buttons */
+.formBtnRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.purpleSaveBtn {
+  background: #6366f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 22px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.purpleSaveBtn:hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+}
+
+.cancelGrayBtn {
+  background: #202538;
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelGrayBtn:hover {
+  background: #2a3048;
+  color: #fff;
+}
+
+/* Table Styles & Search Box */
+.theatreSearchBox {
+  position: relative;
+  width: 100%;
+  margin-bottom: 14px;
+  flex: none;
+}
+
+.theatreSearchInput {
+  width: 100%;
+  background: #181c2b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 9px 12px 9px 36px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.theatreSearchInput:focus {
+  border-color: #6366f1;
+}
+
+.theatreSearchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dashTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.dashTable th {
+  background: #161a29;
+  color: #64748b;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dashTable td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #e2e8f0;
+}
+
+.dashTable tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.statusActive {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.statusInactive {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.actionBtnGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.actionIconBtn {
+  background: #1e2233;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 5px 8px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: all 0.2s ease;
+}
+
+.actionIconBtn:hover {
+  background: #272d42;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.actionDeleteBtn {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 6px;
+  padding: 5px 8px;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: all 0.2s ease;
+}
+
+.actionDeleteBtn:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+/* Pagination */
+.paginationRow {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.pageBtn {
+  background: #181c2b;
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.pageBtnActive {
+  background: #6366f1 !important;
+  color: #ffffff !important;
+  border-color: #6366f1 !important;
+}
+
+/* Quick Timings Pills */
+.timingPillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.quickTimingPill {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quickTimingPill:hover {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+.addTimingCustomBtn {
+  background: #6366f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 14px;
+}
+
+.currentTimingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+.currentTimingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #181c2b;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  color: #e2e8f0;
+}
+
+/* Seat Layout Section */
+.seatLegendRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.legendPill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.screenArcWrapper {
+  width: 100%;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.screenArcSvg {
+  width: 100%;
+  max-width: 320px;
+  height: 28px;
+}
+
+.seatGridContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  padding: 4px;
+}
+
+.seatRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.seatRowLabel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #64748b;
+  width: 14px;
+  text-align: center;
+}
+
+.seatBox {
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.seatBox:hover {
+  transform: scale(1.3);
+}
+
+.seatAvailable {
+  background: #10b981;
+}
+
+.seatBooked {
+  background: #f97316;
+}
+
+.seatBlocked {
+  background: #334155;
+}
+
+.seatSelected {
+  background: #eab308;
+}
+
+.seatActionsRow {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+/* Seat Pricing Table */
+.pricingTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+}
+
+.pricingTable th {
+  background: #181c2b;
+  color: #64748b;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+
+.pricingTable td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #e2e8f0;
+}
+
+.priceInput {
+  width: 75px;
+  background: #181c2b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 5px 8px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  text-align: right;
+  outline: none;
+}
+
+.priceInput:focus {
+  border-color: #6366f1;
+}
+

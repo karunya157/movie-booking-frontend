@@ -8,11 +8,23 @@ export async function GET(req) {
       url += `?userId=${userId}`;
     }
     
-    const res = await fetch(url);
+    const res = await fetch(url, { cache: "no-store" });
     const bookings = await res.json();
     
-    // Sort by id descending like before? The old code returned the raw array.
-    return Response.json(bookings);
+    // Always sort bookings by createdAt timestamp descending (newest bookings first)
+    if (Array.isArray(bookings)) {
+      bookings.sort((a, b) => {
+        const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+        const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+        return timeB - timeA;
+      });
+    }
+    
+    return Response.json(bookings, {
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+      },
+    });
   } catch (error) {
     return Response.json({ message: "Internal server error" }, { status: 500 });
   }

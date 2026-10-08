@@ -41,12 +41,19 @@ const BookingsPage: React.FC = () => {
         // Fallback to userId = 1 if user is not logged in
         const currentUserId = user?.id || 1;
 
-        const res = await fetch(`/api/bookings?userId=${encodeURIComponent(String(currentUserId))}`);
+        const res = await fetch(`/api/bookings?userId=${encodeURIComponent(String(currentUserId))}`, {
+          cache: "no-store",
+        });
         
         if (res.ok) {
           const data = await res.json();
           const list = Array.isArray(data) ? data : data.bookings || [];
-          setBookings(list);
+          const sorted = [...list].sort((a: any, b: any) => {
+            const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return timeB - timeA;
+          });
+          setBookings(sorted);
         }
       } catch (error) {
         console.error("Fetch Bookings Error:", error);
